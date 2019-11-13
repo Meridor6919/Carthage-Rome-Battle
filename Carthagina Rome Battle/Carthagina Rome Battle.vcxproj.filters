@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Technical">
+      <UniqueIdentifier>{395d6f97-b675-436d-9ded-c32aeec66bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{f91a6711-464a-48ab-9b15-a944e3aa5425}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="GameApp.cpp">
+      <Filter>Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXApplication.cpp">
+      <Filter>Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameApp.h">
+      <Filter>Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXApplication.h">
+      <Filter>Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationHeaders.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
