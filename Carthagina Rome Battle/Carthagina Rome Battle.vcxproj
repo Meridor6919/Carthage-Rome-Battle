@@ -124,10 +124,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationHeaders.h" />
     <ClInclude Include="DirectXApplication.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameApp.h" />
+    <ClInclude Include="PlaceholderMove.h" />
+    <ClInclude Include="PlaceholderStay.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace MeridorGraphics {
 		void Draw();
 		void SetFrameTime(float frame_time);
 		void SetFrame(int frame);
-		void Update(float delta_time);
+		void UpdateAllFrames(float delta_time);
 		bool EndReached();
 
 	};

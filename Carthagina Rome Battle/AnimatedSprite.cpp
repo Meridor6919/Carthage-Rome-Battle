@@ -27,7 +27,7 @@ void MeridorGraphics::AnimatedSprite::SetFrame(int frame)
 	source = frames[frame % static_cast<int>(frames.size())];
 }
 
-void MeridorGraphics::AnimatedSprite::Update(float delta_time)
+void MeridorGraphics::AnimatedSprite::UpdateAllFrames(float delta_time)
 {
 	time_to_next_frame -= delta_time;
 

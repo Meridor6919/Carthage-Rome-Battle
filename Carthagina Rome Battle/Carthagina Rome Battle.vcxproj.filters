@@ -47,8 +47,18 @@
     <ClInclude Include="AnimationHeaders.h">
       <Filter>Application</Filter>
     </ClInclude>
+    <ClInclude Include="PlaceholderStay.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaceholderMove.h">
+      <Filter>Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="myfile.spritefont" />
   </ItemGroup>
 </Project>

@@ -8,6 +8,9 @@
 
 class Game
 {
+	std::shared_ptr<PlaceholderMove> moving;
+	std::shared_ptr<PlaceholderStay> staying;
+
 public:
 	Game(DirectX::SpriteBatch* sprite_batch, ID3D11Device *device);
 	void DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionColor> *primitive_batch, float delta_time);
