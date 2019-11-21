@@ -12,8 +12,8 @@ Piece::Piece(int id, COORD position, bool white, std::shared_ptr<MeridorGraphics
 
 void Piece::Draw()
 {
-	sprite->SetX(240 + 90 * position.X);
-	sprite->SetY(40 + 90 * position.Y);
+	sprite->SetX(position.X);
+	sprite->SetY(position.Y);
 	sprite->Draw();
 }
 

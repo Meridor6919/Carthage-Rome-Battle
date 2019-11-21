@@ -1,8 +1,20 @@
 #include "Game.h"
 
+void Game::LoadSprites(DirectX::SpriteBatch * sprite_batch, ID3D11Device* device)
+{
+	float width = 56;
+	float height = 60;
+	for (int x = 0; x < 12; ++x)
+	{
+		RECT rect = { static_cast<short>(width) * (x%6),x/6*height,static_cast<short>(width) + (static_cast<short>(width) * (x % 6)), x / 6 * height+height };
+		sprites.push_back(std::make_shared<MeridorGraphics::Sprite>(sprite_batch,  rect, 0, 0, 90, 90));
+		sprites[x]->AddTexture(L"Graphics\\figures.png", device);
+	}
+}
+
 Game::Game(DirectX::SpriteBatch * sprite_batch, ID3D11Device * device)
 {
-	
+	LoadSprites(sprite_batch, device);
 }
 
 void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* primitive_batch, float delta_time)
@@ -46,7 +58,6 @@ void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionCol
 void Game::DrawSpriteBatch(DirectX::SpriteBatch * sprite_batch, float delta_time)
 {
 	sprite_batch->Begin();
-	
 	sprite_batch->End();
 }
 
