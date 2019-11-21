@@ -14,6 +14,7 @@ class Game
 	std::vector<Piece> Pieces;
 
 	void LoadSprites(DirectX::SpriteBatch * sprite_batch, ID3D11Device* device);
+	void LoadPieces();
 
 public:
 	Game(DirectX::SpriteBatch* sprite_batch, ID3D11Device *device);

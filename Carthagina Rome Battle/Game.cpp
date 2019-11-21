@@ -12,9 +12,38 @@ void Game::LoadSprites(DirectX::SpriteBatch * sprite_batch, ID3D11Device* device
 	}
 }
 
+void Game::LoadPieces()
+{
+	//pawns
+	for (int x = 0; x < 16; ++x)
+	{
+		COORD pos = { 240 + x % 8 * 90, 130+450*(x/8) };
+		Pieces.push_back(Piece(5, pos, x / 8, sprites[5 + 6 * (x / 8)]));
+	}
+	//pieces
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int x = 0; x < 4; ++x)
+		{
+			COORD pos = { 240+(i*90) + (630-2*i*90) * (x / 2), 40 + 630 * (x % 2) };
+			Pieces.push_back(Piece(0, pos, x % 2, sprites[i + 6 * (x % 2)]));
+		}
+	}
+	//queen and king
+	for (int i = 0; i < 2; ++i)
+	{
+		for (int x = 0; x < 2; ++x)
+		{
+			COORD pos = { 510 + i * 90, 40 + 630 * (x % 2) };
+			Pieces.push_back(Piece(0, pos, x % 2, sprites[3+i%2 + 6*(x%2)]));
+		}
+	}
+}
+
 Game::Game(DirectX::SpriteBatch * sprite_batch, ID3D11Device * device)
 {
 	LoadSprites(sprite_batch, device);
+	LoadPieces();
 }
 
 void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* primitive_batch, float delta_time)
@@ -58,6 +87,11 @@ void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionCol
 void Game::DrawSpriteBatch(DirectX::SpriteBatch * sprite_batch, float delta_time)
 {
 	sprite_batch->Begin();
+	for (int i = 0; i < static_cast<int>(Pieces.size()); ++i)
+	{
+		Pieces[i].Draw();
+	}
+
 	sprite_batch->End();
 }
 
