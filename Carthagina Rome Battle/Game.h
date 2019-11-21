@@ -3,13 +3,11 @@
 #include "SimpleMath.h"
 #include "PrimitiveBatch.h"
 #include "VertexTypes.h"
-#include "AnimationHeaders.h"
 #include "SpriteBatch.h"
 
 class Game
 {
-	std::shared_ptr<PlaceholderMove> moving;
-	std::shared_ptr<PlaceholderStay> staying;
+	
 
 public:
 	Game(DirectX::SpriteBatch* sprite_batch, ID3D11Device *device);

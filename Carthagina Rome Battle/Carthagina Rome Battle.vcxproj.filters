@@ -21,10 +21,10 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Technical</Filter>
     </ClCompile>
-    <ClCompile Include="AnimatedSprite.cpp">
-      <Filter>Technical</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Piece.cpp">
       <Filter>Application</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,22 +38,13 @@
     <ClInclude Include="Sprite.h">
       <Filter>Technical</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatedSprite.h">
-      <Filter>Technical</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Application</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationHeaders.h">
-      <Filter>Application</Filter>
-    </ClInclude>
-    <ClInclude Include="PlaceholderStay.h">
       <Filter>Application</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Technical</Filter>
     </ClInclude>
-    <ClInclude Include="PlaceholderMove.h">
+    <ClInclude Include="Piece.h">
       <Filter>Application</Filter>
     </ClInclude>
   </ItemGroup>
