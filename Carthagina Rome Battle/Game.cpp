@@ -53,4 +53,39 @@ void Game::DrawSpriteBatch(DirectX::SpriteBatch * sprite_batch, float delta_time
 void Game::Update(const DirectX::Mouse::ButtonStateTracker * button_tracker, const DirectX::Mouse * mouse, const DirectX::Keyboard::KeyboardStateTracker * keyboard_tracker, const DirectX::Keyboard * keyboard, float delta_time)
 {
 	
+	if (button_tracker->leftButton == 3 && !draging) 
+	{
+		COORD pos = grid->GetPosition(mouse->GetState().x, mouse->GetState().y);
+		if (pos.X * pos.Y != 0)
+		{
+			if (grid->Pieces[(pos.Y-1) * 8 + pos.X-1].id != 10)
+			{
+				draging = true;
+				dragged_piece = &grid->Pieces[(pos.Y-1) * 8 + pos.X-1];
+				dragged_piece->sprite->SetDepth(dragged_piece->sprite->GetDepth() * 2.0);
+				dragged_piece_coords = pos;
+			}
+		}
+	}
+	else if (draging && button_tracker->leftButton == 2)
+	{
+		//validate_move
+		{
+
+		}
+		COORD pos = grid->GetCoords(dragged_piece_coords.X, dragged_piece_coords.Y);
+		dragged_piece->position.X = static_cast<short>(pos.X);
+		dragged_piece->position.Y = static_cast<short>(pos.Y);
+		dragged_piece->sprite->SetDepth(dragged_piece->sprite->GetDepth() / 2.0);
+		
+		move = !move;
+		draging = false;
+		dragged_piece = nullptr;
+	}
+	else if (draging)
+	{
+		dragged_piece->position.X = static_cast<short>(mouse->GetState().x-45);
+		dragged_piece->position.Y = static_cast<short>(mouse->GetState().y-45);
+	}
+	
 }

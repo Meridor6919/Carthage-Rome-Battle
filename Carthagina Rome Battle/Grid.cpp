@@ -20,7 +20,7 @@ COORD Grid::GetPosition(double x, double y)
 	{
 		return { 0,0 };
 	}
-	return { pos_x, pos_y };
+	return { pos_x+1, pos_y+1 };
 }
 COORD Grid::GetCoords(short x, short y)
 {
@@ -42,7 +42,7 @@ void Grid::LoadPieces()
 	for (int x = 0; x < 16; ++x)
 	{
 		COORD pos = { 1 + x%8, 2 + 5 * (x > 7) };
-		Pieces[x] = (Piece(5, GetCoords(pos.X, pos.Y), x > 7, sprites[5 + 6 * (x / 8)]));
+		Pieces[(pos.Y-1)*8 + pos.X - 1] = (Piece(5, GetCoords(pos.X, pos.Y), x > 7, sprites[5 + 6 * (x / 8)]));
 	}
 	//pieces
 	for (int i = 0; i < 3; ++i)
@@ -50,7 +50,7 @@ void Grid::LoadPieces()
 		for (int x = 0; x < 4; ++x)
 		{
 			COORD pos = { 1 + i + x/2*(7-i*2),1 + 7 * (x % 2) };
-			Pieces[16 + i * 4 + x] = (Piece(0, GetCoords( pos.X, pos.Y ), x % 2, sprites[i + 6 * (x % 2)]));
+			Pieces[(pos.Y - 1) * 8 + pos.X - 1] = (Piece(0, GetCoords( pos.X, pos.Y ), x % 2, sprites[i + 6 * (x % 2)]));
 		}
 	}
 	//queen and king
@@ -59,7 +59,7 @@ void Grid::LoadPieces()
 		for (int x = 0; x < 2; ++x)
 		{
 			COORD pos = { i + 4 ,1 + 7 * (x % 2) };
-			Pieces[28 + i * 2 + x] = (Piece(0, GetCoords(pos.X, pos.Y), x % 2, sprites[3 + i % 2 + 6 * (x % 2)]));
+			Pieces[(pos.Y - 1) * 8 + pos.X - 1] = (Piece(0, GetCoords(pos.X, pos.Y), x % 2, sprites[3 + i % 2 + 6 * (x % 2)]));
 		}
 	}
 }
