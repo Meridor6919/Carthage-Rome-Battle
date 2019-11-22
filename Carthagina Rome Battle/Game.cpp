@@ -1,49 +1,8 @@
 #include "Game.h"
 
-void Game::LoadSprites(DirectX::SpriteBatch * sprite_batch, ID3D11Device* device)
-{
-	float width = 56;
-	float height = 60;
-	for (int x = 0; x < 12; ++x)
-	{
-		RECT rect = { static_cast<short>(width) * (x%6),x/6*height,static_cast<short>(width) + (static_cast<short>(width) * (x % 6)), x / 6 * height+height };
-		sprites.push_back(std::make_shared<MeridorGraphics::Sprite>(sprite_batch,  rect, 0, 0, 90, 90));
-		sprites[x]->AddTexture(L"Graphics\\figures.png", device);
-	}
-}
-
-void Game::LoadPieces()
-{
-	//pawns
-	for (int x = 0; x < 16; ++x)
-	{
-		COORD pos = { 240 + x % 8 * 90, 130+450*(x/8) };
-		Pieces.push_back(Piece(5, pos, x / 8, sprites[5 + 6 * (x / 8)]));
-	}
-	//pieces
-	for (int i = 0; i < 3; ++i)
-	{
-		for (int x = 0; x < 4; ++x)
-		{
-			COORD pos = { 240+(i*90) + (630-2*i*90) * (x / 2), 40 + 630 * (x % 2) };
-			Pieces.push_back(Piece(0, pos, x % 2, sprites[i + 6 * (x % 2)]));
-		}
-	}
-	//queen and king
-	for (int i = 0; i < 2; ++i)
-	{
-		for (int x = 0; x < 2; ++x)
-		{
-			COORD pos = { 510 + i * 90, 40 + 630 * (x % 2) };
-			Pieces.push_back(Piece(0, pos, x % 2, sprites[3+i%2 + 6*(x%2)]));
-		}
-	}
-}
-
 Game::Game(DirectX::SpriteBatch * sprite_batch, ID3D11Device * device)
 {
-	LoadSprites(sprite_batch, device);
-	LoadPieces();
+	grid = std::make_unique<Grid>(sprite_batch, device);
 }
 
 void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* primitive_batch, float delta_time)
@@ -87,11 +46,7 @@ void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionCol
 void Game::DrawSpriteBatch(DirectX::SpriteBatch * sprite_batch, float delta_time)
 {
 	sprite_batch->Begin();
-	for (int i = 0; i < static_cast<int>(Pieces.size()); ++i)
-	{
-		Pieces[i].Draw();
-	}
-
+	grid->DrawPieces();
 	sprite_batch->End();
 }
 

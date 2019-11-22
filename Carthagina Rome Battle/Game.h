@@ -5,16 +5,17 @@
 #include "VertexTypes.h"
 #include "SpriteBatch.h"
 #include <vector>
-#include "Piece.h"
+#include "Grid.h"
 
 class Game
 {
 	
 	std::vector<std::shared_ptr<MeridorGraphics::Sprite>> sprites;
-	std::vector<Piece> Pieces;
+	bool move = true;
+	bool in_check = false;
+	bool draging = false;
+	std::unique_ptr<Grid> grid;
 
-	void LoadSprites(DirectX::SpriteBatch * sprite_batch, ID3D11Device* device);
-	void LoadPieces();
 
 public:
 	Game(DirectX::SpriteBatch* sprite_batch, ID3D11Device *device);
