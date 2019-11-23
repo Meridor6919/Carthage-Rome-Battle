@@ -18,6 +18,8 @@ class Game
 	COORD dragged_piece_coords = { 0,0 };
 	std::unique_ptr<Grid> grid;
 
+	void DrawGrid(DirectX::PrimitiveBatch<DirectX::VertexPositionColor> *primitive_batch, float delta_time);
+
 
 public:
 	Game(DirectX::SpriteBatch* sprite_batch, ID3D11Device *device);
