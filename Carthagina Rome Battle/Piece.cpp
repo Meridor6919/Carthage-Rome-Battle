@@ -14,6 +14,7 @@ void Piece::Draw()
 {
 	sprite->SetX(position.X);
 	sprite->SetY(position.Y);
+	sprite->SetDepth(depth);
 	sprite->Draw();
 }
 

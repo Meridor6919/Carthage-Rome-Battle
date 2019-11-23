@@ -45,7 +45,7 @@ void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionCol
 
 void Game::DrawSpriteBatch(DirectX::SpriteBatch * sprite_batch, float delta_time)
 {
-	sprite_batch->Begin();
+	sprite_batch->Begin(DirectX::SpriteSortMode_FrontToBack);
 	grid->DrawPieces();
 	sprite_batch->End();
 }
@@ -62,7 +62,7 @@ void Game::Update(const DirectX::Mouse::ButtonStateTracker * button_tracker, con
 			{
 				draging = true;
 				dragged_piece = &grid->Pieces[(pos.Y-1) * 8 + pos.X-1];
-				dragged_piece->sprite->SetDepth(dragged_piece->sprite->GetDepth() * 2.0);
+				dragged_piece->depth = 0.2f;
 				dragged_piece_coords = pos;
 			}
 		}
@@ -95,7 +95,7 @@ void Game::Update(const DirectX::Mouse::ButtonStateTracker * button_tracker, con
 		}
 		dragged_piece->position.X = static_cast<short>(pos.X);
 		dragged_piece->position.Y = static_cast<short>(pos.Y);
-		dragged_piece->sprite->SetDepth(dragged_piece->sprite->GetDepth() / 2.0);
+		dragged_piece->depth = 0.1f;
 		
 		draging = false;
 		dragged_piece = nullptr;
