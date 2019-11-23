@@ -56,9 +56,9 @@ void Game::Update(const DirectX::Mouse::ButtonStateTracker * button_tracker, con
 	if (button_tracker->leftButton == 3 && !draging) 
 	{
 		COORD pos = grid->GetPosition(mouse->GetState().x, mouse->GetState().y);
-		if (pos.X * pos.Y != 0)
+		if (pos.X * pos.Y)
 		{
-			if (grid->Pieces[(pos.Y-1) * 8 + pos.X-1].id != 10)
+			if (grid->Pieces[(pos.Y-1) * 8 + pos.X-1].id != 10 && move == grid->Pieces[(pos.Y - 1) * 8 + pos.X - 1].white)
 			{
 				draging = true;
 				dragged_piece = &grid->Pieces[(pos.Y-1) * 8 + pos.X-1];
@@ -69,16 +69,34 @@ void Game::Update(const DirectX::Mouse::ButtonStateTracker * button_tracker, con
 	}
 	else if (draging && button_tracker->leftButton == 2)
 	{
+		COORD pos;
 		//validate_move
 		{
-
+			COORD grid_pos = grid->GetPosition(mouse->GetState().x, mouse->GetState().y);
+			if (grid_pos.X*grid_pos.Y)
+			{
+				if (grid->Pieces[(grid_pos.Y - 1) * 8 + grid_pos.X - 1].white != dragged_piece->white || grid->Pieces[(grid_pos.Y - 1) * 8 + grid_pos.X - 1].id==10)
+				{
+					grid->Pieces[(grid_pos.Y - 1) * 8 + grid_pos.X - 1] = *dragged_piece;
+					dragged_piece = &grid->Pieces[(grid_pos.Y - 1) * 8 + grid_pos.X - 1];
+					grid->Pieces[(dragged_piece_coords.Y - 1) * 8 + dragged_piece_coords.X - 1] = Piece(10, { 0,0 }, 0, nullptr);
+					pos = grid->GetCoords(grid_pos.X, grid_pos.Y);
+					move = !move;
+				}
+				else
+				{
+					pos = grid->GetCoords(dragged_piece_coords.X, dragged_piece_coords.Y);
+				}
+			}
+			else
+			{
+				pos = grid->GetCoords(dragged_piece_coords.X, dragged_piece_coords.Y);
+			}
 		}
-		COORD pos = grid->GetCoords(dragged_piece_coords.X, dragged_piece_coords.Y);
 		dragged_piece->position.X = static_cast<short>(pos.X);
 		dragged_piece->position.Y = static_cast<short>(pos.Y);
 		dragged_piece->sprite->SetDepth(dragged_piece->sprite->GetDepth() / 2.0);
 		
-		move = !move;
 		draging = false;
 		dragged_piece = nullptr;
 	}

@@ -16,7 +16,7 @@ COORD Grid::GetPosition(double x, double y)
 {
 	short pos_x = static_cast<short>((x - 240.0) / 90.0);
 	short pos_y = (y - 40) / 90;
-	if (x < 240 || x>1160 || y < 40 || y > 760)
+	if (x < 240 || x>960 || y < 40 || y > 760)
 	{
 		return { 0,0 };
 	}

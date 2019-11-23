@@ -23,7 +23,7 @@ namespace MeridorGraphics {
 
 	public:
 
-		Sprite(DirectX::SpriteBatch* sprite_batch, RECT source, LONG pos_x, LONG pos_y, LONG width, LONG height, float depth = 0.0f, float rotation = 0.0f);
+		Sprite(DirectX::SpriteBatch* sprite_batch, RECT source, LONG pos_x, LONG pos_y, LONG width, LONG height, float depth = 0.1f, float rotation = 0.0f);
 		virtual void AddTexture(const wchar_t* file_name, ID3D11Device *device);
 		virtual void Draw();
 		void SetRotation(float rotation);
@@ -59,7 +59,7 @@ namespace MeridorGraphics {
 
 	public:
 
-		Text(DirectX::SpriteFont* sprite_font, DirectX::SpriteBatch* sprite_batch, float fontsize, DirectX::XMFLOAT2 position, float depth = 0.0f, float rotation = 0.0f);
+		Text(DirectX::SpriteFont* sprite_font, DirectX::SpriteBatch* sprite_batch, float fontsize, DirectX::XMFLOAT2 position, float depth = 0.1f, float rotation = 0.0f);
 		void Draw(const wchar_t* text);
 		void SetRotation(float rotation);
 		void SetPosition(DirectX::XMFLOAT2 position);
