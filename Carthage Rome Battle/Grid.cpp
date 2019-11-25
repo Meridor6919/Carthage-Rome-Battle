@@ -35,6 +35,12 @@ void Grid::DrawPieces()
 		if (Pieces[i].id != 10)
 			Pieces[i].Draw();
 	}
+	for (int i = 0; i < 12; ++i)
+	{
+		sprites[i]->SetX(75 + 960 * (i / 6));
+		sprites[i]->SetY(75 + 110 * (i % 6));
+		sprites[i]->Draw();
+	}
 }
 void Grid::LoadPieces()
 {

@@ -8,8 +8,6 @@ struct Piece
 	int id;
 	COORD position;
 	bool white;
-	bool moved = false;
-	bool en_passant = false;
 	float depth = 0.1f;
 
 	Piece(int id, COORD position, bool white, std::shared_ptr< MeridorGraphics::Sprite> sprite);

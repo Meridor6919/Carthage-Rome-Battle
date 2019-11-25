@@ -38,6 +38,22 @@ void Game::DrawGrid(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* primi
 		v4.y += 90;
 		current_color = !current_color;
 	}
+	for (int i = 0; i < 12; ++i)
+	{
+		v1.x = 75 + 960 * (i / 6);
+		v1.y = 75 + 110 * (i % 6);
+		v2 = v1;
+		v2.x += 90;
+		v3 = v2;
+		v3.y += 90;
+		v4 = v1;
+		v4.y += 90;
+
+		primitive_batch->DrawQuad(DirectX::VertexPositionColor(XMLoadFloat3(&v1), XMLoadFloat4(&colors[current_color])),
+			DirectX::VertexPositionColor(XMLoadFloat3(&v2), XMLoadFloat4(&colors[current_color])),
+			DirectX::VertexPositionColor(XMLoadFloat3(&v3), XMLoadFloat4(&colors[current_color])),
+			DirectX::VertexPositionColor(XMLoadFloat3(&v4), XMLoadFloat4(&colors[current_color])));
+	}
 }
 void Game::DrawPrimitiveBatch(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* primitive_batch, float delta_time)
 {
@@ -59,7 +75,7 @@ void Game::Update(const DirectX::Mouse::ButtonStateTracker * button_tracker, con
 		COORD pos = grid->GetPosition(mouse->GetState().x, mouse->GetState().y);
 		if (pos.X * pos.Y)
 		{
-			if (grid->Pieces[(pos.Y-1) * 8 + pos.X-1].id != 10 && move == grid->Pieces[(pos.Y - 1) * 8 + pos.X - 1].white)
+			if (grid->Pieces[(pos.Y-1) * 8 + pos.X-1].id != 10)
 			{
 				draging = true;
 				dragged_piece = &grid->Pieces[(pos.Y-1) * 8 + pos.X-1];
@@ -82,7 +98,6 @@ void Game::Update(const DirectX::Mouse::ButtonStateTracker * button_tracker, con
 				dragged_piece = &grid->Pieces[(grid_pos.Y - 1) * 8 + grid_pos.X - 1];
 				grid->Pieces[(dragged_piece_coords.Y - 1) * 8 + dragged_piece_coords.X - 1] = Piece(10, { 0,0 }, 0, nullptr);
 				pos = grid->GetCoords(grid_pos.X, grid_pos.Y);
-				move = !move;
 			}
 			else
 			{

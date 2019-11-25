@@ -7,7 +7,6 @@ GameApp::GameApp(HINSTANCE instance) : DirectXApplication(instance)
 	basic_effect = std::make_unique<DirectX::BasicEffect>(device);
 	basic_effect->SetVertexColorEnabled(true);
 
-
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 

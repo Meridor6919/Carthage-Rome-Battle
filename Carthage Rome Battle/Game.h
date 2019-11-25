@@ -10,9 +10,6 @@
 class Game
 {
 	
-	std::vector<std::shared_ptr<MeridorGraphics::Sprite>> sprites;
-	bool move = true;
-	bool in_check = false;
 	bool draging = false;
 	Piece* dragged_piece = nullptr;
 	COORD dragged_piece_coords = { 0,0 };
