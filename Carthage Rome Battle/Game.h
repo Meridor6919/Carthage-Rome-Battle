@@ -9,11 +9,12 @@
 
 class Game
 {
-	
+
 	bool draging = false;
 	Piece* dragged_piece = nullptr;
 	COORD dragged_piece_coords = { 0,0 };
 	std::unique_ptr<Grid> grid;
+	std::unique_ptr<Piece> buffer_piece = nullptr;
 
 	void DrawGrid(DirectX::PrimitiveBatch<DirectX::VertexPositionColor> *primitive_batch, float delta_time);
 
