@@ -3,6 +3,7 @@ Overview
 Carthage Rome Battle is application that simulates chess board with pieces replaced with warriors of Rome and Carthage.
 It's only purpose was to complete an school assignment and therefore it kind of sucks.
 Basically I took code from my other not finished at the time project - ChessDB and modified it to fit requirements.
+I was responsible for coding and my mate Jajo did all graphics.
 
 Features
 =======
